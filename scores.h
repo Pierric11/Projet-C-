@@ -1,11 +1,11 @@
 #ifndef _SCORES_H
 #define _SCORES_H
 /**
- * scores max 10
+ * score max = 10
  */
 #define SCORES_MAX 10
 /**
- * initialisation du scores
+ * initialisation du score
  */
 void scores_init();
 /**
@@ -14,12 +14,12 @@ void scores_init();
 void scores_shut();
 /**
  * sauver scores
- * @param name nom du tableau scores à sauvegarder
- * @param scores scores à sauvegarder
+ * @param name nom du tableau où est sauvgarder le score
+ * @param scores score à sauvegarder
  */
 int scores_add(char name[], int score);
 /**
- * scores 
+ * retourne le score d'un joueur
  */
 int scores_get_value(int index);
 
