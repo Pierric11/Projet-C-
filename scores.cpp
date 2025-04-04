@@ -27,7 +27,10 @@ void scores_init()
 
 void scores_shut()
 {
-    // Nothing to do
+    if(name[] != NULL)
+    {
+        delete[]name;
+    }
 }
 
 int scores_get_value(int index)
