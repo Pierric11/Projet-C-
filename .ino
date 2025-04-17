@@ -64,6 +64,7 @@ void loop() {
     switch (state) {
       case START_GAME:
       		if (digitalRead(BTN_OK_RIGHT) == LOW){
+              	Serial.println("START_GAME");
         		lcd.clear();
               	lcd.print("Enigme 1 -> OK");
                 state = START;
@@ -72,12 +73,14 @@ void loop() {
       
       case START:
       		if (digitalRead(BTN_OK_RIGHT) == HIGH){
+              	Serial.println("START");
       			state = PAUSE_1;
             }
       		break;
       
       case PAUSE_1:
             if (digitalRead(BTN_OK_RIGHT) == LOW && millis() - lastButtonPress > debounceDelay) {
+              	Serial.println("PAUSE_1");
                 state = ENIGME_1;
                 lcd.clear();
             	lcd.print("Code:");
@@ -90,6 +93,7 @@ void loop() {
 
         case ENIGME_1:
             if (digitalRead(BTN_UP) == LOW && millis() - lastButtonPress > debounceDelay) {
+              	Serial.println("ENIGME_1");
                 userCode[codeIndex]++;
                 if (userCode[codeIndex] > 9) {
                     userCode[codeIndex] = 0;
@@ -116,6 +120,7 @@ void loop() {
             break;
 
         case TEST_CODE_1:
+      		Serial.println("TEST_CODE_1");
             for (int i = 0; i < 4; i++) {
                 if (userCode[i] != correctCode[i]) {
                     codeCorrect = false;
@@ -124,6 +129,7 @@ void loop() {
             }
 
             if (codeCorrect) {
+              	Serial.println("code correct");
                 digitalWrite(GREEN_LED, HIGH);
                 lcd.print("Correct !");
               	lcd.setCursor(0, 1);
@@ -135,6 +141,7 @@ void loop() {
                 lcd.print("Enigme 2 -> OK");
                 validationEnCours = false; // Réinitialiser ici aussi, au cas où on revient directement
             } else {
+              	Serial.println("code incorrect");
                 digitalWrite(RED_LED, HIGH);
                 lcd.print("Faux !");
                 delay(errorDelay);
